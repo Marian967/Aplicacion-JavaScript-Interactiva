@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aplicación Web Interactiva</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Aplicación JavaScript Interactiva</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="#calculadora">Calculadora</a></li>
+                    <li><a href="#tareas">Lista de Tareas</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+
+        <!-- CALCULADORA -->
+
+            <section id="calculadora">
+                <h2>Calculadora</h2>
+
+                <div class="calculator">
+
+                    <input type="text" id="pantalla" readonly>
+
+                    <div class="botones">
+
+                        <button onclick="agregarNumero('7')">7</button>
+                        <button onclick="agregarNumero('8')">8</button>
+                        <button onclick="agregarNumero('9')">9</button>
+                        <button onclick="operacion('/')">÷</button>
+
+                        <button onclick="agregarNumero('4')">4</button>
+                        <button onclick="agregarNumero('5')">5</button>
+                        <button onclick="agregarNumero('6')">6</button>
+                        <button onclick="operacion('*')">×</button>
+
+                        <button onclick="agregarNumero('1')">1</button>
+                        <button onclick="agregarNumero('2')">2</button>
+                        <button onclick="agregarNumero('3')">3</button>
+                        <button onclick="operacion('-')">−</button>
+
+                        <button onclick="agregarNumero('0')">0</button>
+                        <button onclick="calcular()">=</button>
+                        <button onclick="limpiar()">C</button>
+                        <button onclick="operacion('+')">+</button>
+
+                    </div>
+                </div>
+            </section>
+
+        <!-- LISTA DE TAREAS -->
+
+            <section id="tareas">
+
+                <h2>Lista de Tareas</h2>
+
+                <div class="todo">
+
+                    <input type="text" id="nuevaTarea" placeholder="Escribe una tarea...">
+                    <button onclick="agregarTarea()">Agregar</button>
+
+                    <ul id="listaTareas"></ul>
+
+                </div>
+                <br>
+                <p id="contadorTareas"></p>
+
+            </section>
+
+        <!-- GALERIA -->
+
+            <section id="galeria">
+
+                <h2>Galería de Imágenes</h2>
+
+                <div class="galeria">
+
+                    <img id="imagenPrincipal" src="https://picsum.photos/600/400?random=1">
+
+                    <div class="miniaturas">
+
+                        <img src="https://picsum.photos/100/70?random=1" onclick="cambiarImagen(this)">
+                        <img src="https://picsum.photos/100/70?random=2" onclick="cambiarImagen(this)">
+                        <img src="https://picsum.photos/100/70?random=3" onclick="cambiarImagen(this)">
+                        <img src="https://picsum.photos/100/70?random=4" onclick="cambiarImagen(this)">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>
+            <p>Trabajo Final - Módulo 2 - JavaScript</p>
+        </footer>
+
+        <script src="app.js"></script>
+
+    </body>
+</html>
