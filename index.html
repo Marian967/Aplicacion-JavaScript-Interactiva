@@ -27,7 +27,7 @@
 
             <section id="calculadora">
                 <h2>Calculadora</h2>
-
+                <br>
                 <div class="calculator">
 
                     <input type="text" id="pantalla" readonly>
@@ -37,18 +37,21 @@
                         <button onclick="agregarNumero('7')">7</button>
                         <button onclick="agregarNumero('8')">8</button>
                         <button onclick="agregarNumero('9')">9</button>
+                        
                         <button onclick="operacion('/')">÷</button>
-
+                                                                  
                         <button onclick="agregarNumero('4')">4</button>
                         <button onclick="agregarNumero('5')">5</button>
                         <button onclick="agregarNumero('6')">6</button>
+                        
                         <button onclick="operacion('*')">×</button>
-
+                                             
                         <button onclick="agregarNumero('1')">1</button>
                         <button onclick="agregarNumero('2')">2</button>
                         <button onclick="agregarNumero('3')">3</button>
+                        
                         <button onclick="operacion('-')">−</button>
-
+                       
                         <button onclick="agregarNumero('0')">0</button>
                         <button onclick="calcular()">=</button>
                         <button onclick="limpiar()">C</button>
@@ -63,14 +66,15 @@
             <section id="tareas">
 
                 <h2>Lista de Tareas</h2>
+                <br>
 
                 <div class="todo">
 
-                    <input type="text" id="nuevaTarea" placeholder="Escribe una tarea...">
-                    <button onclick="agregarTarea()">Agregar</button>
-
-                    <ul id="listaTareas"></ul>
-
+                        <input type="text" id="nuevaTarea" placeholder="Escribe una tarea...">
+                        <button onclick="agregarTarea()">Agregar</button>
+                    
+                        <ul id="listaTareas"></ul>                                               
+                    
                 </div>
                 <br>
                 <p id="contadorTareas"></p>
@@ -82,7 +86,7 @@
             <section id="galeria">
 
                 <h2>Galería de Imágenes</h2>
-
+                <br>
                 <div class="galeria">
 
                     <img id="imagenPrincipal" src="https://picsum.photos/600/400?random=1">

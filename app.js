@@ -85,7 +85,9 @@ function mostrarTareas(){
             ${tarea.texto}
         </span>
 
-        <button onclick="eliminarTarea(${index})">X</button>
+        <button class="btn-eliminar" onclick="eliminarTarea(${index})">
+            Eliminar
+        </button>
             `
 
         lista.appendChild(li)
@@ -101,11 +103,14 @@ function mostrarTareas(){
 
 function eliminarTarea(indice){
 
-    tareas.splice(indice,1)
+    if(confirm("¿Eliminar esta tarea?")){
 
-    mostrarTareas()
+        tareas.splice(indice,1)
+        mostrarTareas()
+    }
 
 }
+
 
 function toggleTarea(indice){
 
@@ -133,7 +138,6 @@ function cambiarImagen(imagen){
 
     let principal = document.getElementById("imagenPrincipal")
 
-    /*principal.src = imagen.src.replace("100/70","600/400")*/
     principal.src = imagen.src
 
 }
@@ -156,3 +160,4 @@ document.getElementById("nuevaTarea").addEventListener("keydown", function(event
 // =========================
 
 mostrarTareas()
+
