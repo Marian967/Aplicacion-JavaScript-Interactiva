@@ -28,7 +28,10 @@ text-align:center;
 
 /* CALCULADORA */
 .calc{
-display:inline-block;
+/*display:inline-block;*/
+width:250px;
+margin:auto;
+    
 background:white;
 padding:15px;
 border-radius:10px;
