@@ -30,8 +30,8 @@ text-align:center;
 .calc{
 /*display:inline-block;*/
 display: flex;
-width:250px;
-margin:auto;  
+/*width:250px;
+margin:auto;  */
 background:white;
 padding:15px;
 border-radius:10px;
