@@ -2,162 +2,146 @@
 // CALCULADORA
 // =========================
 
-let pantalla = document.getElementById("pantalla")
-let resultadoMostrado = false
-
-function agregarNumero(numero){
-
-    if(resultadoMostrado){
-        pantalla.value = ""
-        resultadoMostrado = false
+class Calculadora{
+    constructor(id){
+        this.pantalla = document.getElementById(id)
+        this.resultadoMostrado = false
     }
 
-    pantalla.value += numero
-}
-
-function operacion(op){
-
-    pantalla.value += op
-    resultadoMostrado = false
-}
-
-function calcular(){
-
-    try{
-
-        pantalla.value = eval(pantalla.value)
-        resultadoMostrado = true
-    }catch{
-
-        pantalla.value = "Error"
-
+    agregarNumero(num){
+        if(this.resultadoMostrado){
+            this.pantalla.value = ""
+            this.resultadoMostrado = false
+        }
+        this.pantalla.value += num
     }
 
+    operacion(op){
+        this.pantalla.value += op
+        this.resultadoMostrado = false
+    }
+
+    calcular(){
+        try{
+            this.pantalla.value = eval(this.pantalla.value)
+            this.resultadoMostrado = true
+        }catch{
+            this.pantalla.value = "Error"
+        }
+    }
+
+    limpiar(){
+        this.pantalla.value = ""
+        this.resultadoMostrado = false
+    }
 }
-
-function limpiar(){
-
-    pantalla.value = ""
-    resultadoMostrado = false
-}
-
 
 // =========================
-// LISTA DE TAREAS
+// TAREAS
 // =========================
 
-/*let tareas = []*/
-
-let tareas = JSON.parse(localStorage.getItem("tareas")) || []
-
-function agregarTarea(){
-
-    let input = document.getElementById("nuevaTarea")
-    let texto = input.value
-
-    if(texto === "") return
-
-    tareas.push({
-        texto: texto,
-        completada: false
-    })
-
-    mostrarTareas()
-
-    input.value = ""
-
+class Tarea{
+    constructor(texto, completada = false){
+        this.texto = texto
+        this.completada = completada
+    }
 }
 
-function mostrarTareas(){
+class ListaTareas{
+    constructor(){
+        this.tareas = JSON.parse(localStorage.getItem("tareas")) || []
+        this.lista = document.getElementById("listaTareas")
+        this.input = document.getElementById("nuevaTarea")
+        this.contador = document.getElementById("contadorTareas")
 
-    let lista = document.getElementById("listaTareas")
+        this.input.addEventListener("keydown",(e)=>{
+            if(e.key === "Enter"){
+                this.agregarTarea()
+            }
+        })
 
-    lista.innerHTML = ""
+        this.mostrarTareas()
+    }
 
-    tareas.forEach((tarea,index)=>{
+    guardar(){
+        localStorage.setItem("tareas", JSON.stringify(this.tareas))
+    }
 
-        let li = document.createElement("li")
+    agregarTarea(){
+        let texto = this.input.value
+        if(texto === "") return
 
-        li.innerHTML = `
-        <input type="checkbox" onchange="toggleTarea(${index})" ${tarea.completada ? "checked" : ""}>
+        this.tareas.push(new Tarea(texto))
+        this.input.value = ""
+        this.mostrarTareas()
+    }
 
-        <span class="${tarea.completada ? "completada" : ""}">
-            ${tarea.texto}
-        </span>
+    eliminarTarea(index){
+        if(confirm("¿Eliminar tarea?")){
+            this.tareas.splice(index,1)
+            this.mostrarTareas()
+        }
+    }
 
-        <button class="btn-eliminar" onclick="eliminarTarea(${index})">
-            Eliminar
-        </button>
+    toggleTarea(index){
+        this.tareas[index].completada = !this.tareas[index].completada
+        this.mostrarTareas()
+    }
+
+    actualizarContador(){
+        let pendientes = this.tareas.filter(t => !t.completada).length
+        this.contador.textContent = "Tareas pendientes: " + pendientes
+    }
+
+    mostrarTareas(){
+        this.lista.innerHTML = ""
+
+        this.tareas.forEach((tarea,index)=>{
+
+            let li = document.createElement("li")
+
+            li.innerHTML = `
+            <input type="checkbox" ${tarea.completada ? "checked" : ""}>
+            <span class="${tarea.completada ? "completada" : ""}">
+                ${tarea.texto}
+            </span>
+            <button class="btn-eliminar">Eliminar</button>
             `
 
-        lista.appendChild(li)
+            li.querySelector("input").addEventListener("change",()=>{
+                this.toggleTarea(index)
+            })
 
-    })
-    
+            li.querySelector("button").addEventListener("click",()=>{
+                this.eliminarTarea(index)
+            })
 
-    localStorage.setItem("tareas", JSON.stringify(tareas))
+            this.lista.appendChild(li)
+        })
 
-    actualizarContador()
+        this.guardar()
+        this.actualizarContador()
+    }
 }
 
+// =========================
+// GALERIA
+// =========================
 
-function eliminarTarea(indice){
-
-    if(confirm("¿Eliminar esta tarea?")){
-
-        tareas.splice(indice,1)
-        mostrarTareas()
+class Galeria{
+    constructor(){
+        this.principal = document.getElementById("imagenPrincipal")
     }
 
-}
-
-
-function toggleTarea(indice){
-
-    tareas[indice].completada = !tareas[indice].completada
-
-    mostrarTareas()
-
-}
-
-function actualizarContador(){
-
-let pendientes = tareas.filter(t => !t.completada).length
-
-document.getElementById("contadorTareas").textContent =
-"Tareas pendientes: " + pendientes
-
-}
-
-
-// =========================
-// GALERIA DE IMAGENES
-// =========================
-
-function cambiarImagen(imagen){
-
-    let principal = document.getElementById("imagenPrincipal")
-
-    principal.src = imagen.src
-
-}
-
-// =========================
-// AGREGAR TAREA CON ENTER
-// =========================
-
-document.getElementById("nuevaTarea").addEventListener("keydown", function(event){
-
-    if(event.key === "Enter"){
-
-    agregarTarea()
-
+    cambiarImagen(img){
+        this.principal.src = img.src
     }
-})
+}
 
 // =========================
-// CARGAR TAREAS GUARDADAS
+// INICIALIZAR
 // =========================
 
-mostrarTareas()
-
+const calc = new Calculadora("pantalla")
+const lista = new ListaTareas()
+const galeria = new Galeria()
