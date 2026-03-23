@@ -29,6 +29,7 @@ text-align:center;
 /* CALCULADORA */
 .calc{
 display:inline-block;
+width:max-content;
 background:white;
 padding:15px;
 border-radius:10px;
