@@ -3,8 +3,8 @@ Trabajo Final Modulo 2
 
 Descripción
 
-Este proyecto fue desarrollado como trabajo final del módulo Introducción a JavaScript.
-La aplicación web incluye tres funcionalidades principales:
+Este proyecto correponde al trabajo final del módulo Introducción a JavaScript.
+La aplicación fue desarrollada utilizando JavaScript orientado a objetos, implementando clases para modularizar la lógica, incluye tres funcionalidades principales:
 
 •	Calculadora básica
 •	Lista de tareas interactiva
