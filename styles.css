@@ -29,36 +29,22 @@ text-align:center;
 /* CALCULADORA */
 .calc{
     
-/*display:inline-block;
-    
-width:250px;
-margin:auto;  
+/*width:250px;
+margin:auto;*/ 
+
+display:inline-block;
 background:white;
 padding:15px;
 border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);*/
-    
-width:250px;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);   
+box-shadow:0 0 10px rgba(0,0,0,0.2); 
 }
 
 #pantalla{
-/*width:100%;
+width:100%;
 height:40px;
 margin-bottom:10px;
 text-align:right;
-font-size:18px;*/
-
- width:100%;
-    height:40px;
-    margin-bottom:10px;
-    font-size:20px;
-    text-align:right;
-    padding-right:10px;
+font-size:18px;
 }
 
 .botones{
